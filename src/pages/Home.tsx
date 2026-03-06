@@ -6,11 +6,25 @@ import { ArrowRight } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
-// Update these when blog posts are published (use full URLs for external blogs)
 const MANAGER_ALTERNATIVES = [
-  { title: 'Vacasa Alternatives', description: 'Explore local co-hosting options that put your property—and your earnings—first.', href: '/blog/vacasa-alternatives' },
-  { title: 'Evolve Alternatives', description: 'Discover hands-on management that delivers better results than cookie-cutter solutions.', href: '/blog/evolve-alternatives' },
-  { title: 'Casago Alternatives', description: 'Compare your options and find a Tampa Bay partner that truly understands your market.', href: '/blog/casago-alternatives' },
+  {
+    title: 'Switching from Vacasa',
+    description:
+      'See how moving from Vacasa to Between Stays lets you keep your reviews, lower your effective fees, and gain a truly local team.',
+    href: '/blog/vacasa-alternative-in-tampa-bay',
+  },
+  {
+    title: 'Switching from Evolve',
+    description:
+      'Tired of doing the on-the-ground work while Evolve handles the online piece? Learn what changes when Between Stays runs everything.',
+    href: '/blog/evolve-alternative-in-tampa-bay',
+  },
+  {
+    title: 'Switching from Casago',
+    description:
+      'Concerned about the Casago–Vacasa merger? Explore what a stable, non-franchise partner in Tampa Bay looks like with Between Stays.',
+    href: '/blog/casago-alternative-in-tampa-bay',
+  },
 ];
 
 export default function Home() {
@@ -247,9 +261,11 @@ export default function Home() {
       >
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-16">
-            <p className="section-animate section-label mb-4">manager alternatives</p>
-            <h2 className="section-animate font-serif text-3xl text-gray-900">
-              Considering a change from big-name managers?
+            <p className="section-animate section-label text-sm uppercase tracking-[0.18em] text-neutral-500">
+              for vacasa, evolve & casago hosts
+            </p>
+            <h2 className="section-animate mt-2 text-2xl font-semibold text-neutral-900">
+              Considering a switch to a local manager?
             </h2>
           </div>
 
