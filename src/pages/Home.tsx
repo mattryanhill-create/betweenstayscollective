@@ -6,6 +6,13 @@ import { ArrowRight } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
+// Update these when blog posts are published (use full URLs for external blogs)
+const MANAGER_ALTERNATIVES = [
+  { title: 'Vacasa Alternatives', description: 'Explore local co-hosting options that put your property—and your earnings—first.', href: '/blog/vacasa-alternatives' },
+  { title: 'Evolve Alternatives', description: 'Discover hands-on management that delivers better results than cookie-cutter solutions.', href: '/blog/evolve-alternatives' },
+  { title: 'Casago Alternatives', description: 'Compare your options and find a Tampa Bay partner that truly understands your market.', href: '/blog/casago-alternatives' },
+];
+
 export default function Home() {
   const heroRef = useRef<HTMLDivElement>(null);
   const sectionsRef = useRef<(HTMLElement | null)[]>([]);
@@ -233,9 +240,41 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CTA Section - Simple, elegant */}
+      {/* Manager Alternatives Section - 3 cards linking to blog posts */}
       <section 
         ref={el => { sectionsRef.current[5] = el; }}
+        className="py-24 lg:py-32 bg-gray-50"
+      >
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <p className="section-animate section-label mb-4">manager alternatives</p>
+            <h2 className="section-animate font-serif text-3xl text-gray-900">
+              Considering a change from big-name managers?
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {MANAGER_ALTERNATIVES.map((item, i) => (
+              <a
+                key={i}
+                href={item.href}
+                className="section-animate group block bg-white p-8 text-center hover:shadow-lg transition-shadow duration-300"
+              >
+                <h3 className="font-serif text-xl text-gray-900 mb-4 group-hover:text-[#5A7A6A] transition-colors">{item.title}</h3>
+                <p className="body-text mb-6">{item.description}</p>
+                <span className="inline-flex items-center text-sm text-gray-500 group-hover:text-[#5A7A6A] transition-colors">
+                  Read more
+                  <ArrowRight className="ml-2 w-4 h-4" />
+                </span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section - Simple, elegant */}
+      <section 
+        ref={el => { sectionsRef.current[6] = el; }}
         className="py-24 lg:py-32 bg-[#5A7A6A]"
       >
         <div className="max-w-3xl mx-auto px-6 lg:px-8 text-center">
