@@ -139,7 +139,7 @@ export default function ServicesMosaic() {
         className="absolute left-[52vw] top-[14vh] w-[42vw] h-[72vh] shadow-card"
       >
         <img 
-          src="/services_living.jpg" 
+          src={`${import.meta.env.BASE_URL}services_living.jpg`} 
           alt="Living space" 
           className="w-full h-full object-cover"
         />
@@ -150,7 +150,7 @@ export default function ServicesMosaic() {
         className="absolute left-[58vw] top-[22vh] w-[36vw] h-[56vh] shadow-card"
       >
         <img 
-          src="/services_bedroom.jpg" 
+          src={`${import.meta.env.BASE_URL}services_bedroom.jpg`} 
           alt="Bedroom detail" 
           className="w-full h-full object-cover"
         />
@@ -161,7 +161,7 @@ export default function ServicesMosaic() {
         className="absolute left-[64vw] top-[30vh] w-[30vw] h-[42vh] shadow-card"
       >
         <img 
-          src="/services_bathroom.jpg" 
+          src={`${import.meta.env.BASE_URL}services_bathroom.jpg`} 
           alt="Bathroom detail" 
           className="w-full h-full object-cover"
         />

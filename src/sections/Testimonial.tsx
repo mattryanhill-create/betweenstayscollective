@@ -72,7 +72,7 @@ export default function Testimonial() {
         className="absolute left-0 top-0 w-[56vw] h-full"
       >
         <img 
-          src="/testimonial_kitchen.jpg" 
+          src={`${import.meta.env.BASE_URL}testimonial_kitchen.jpg`} 
           alt="Happy homeowner" 
           className="w-full h-full object-cover"
         />

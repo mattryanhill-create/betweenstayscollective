@@ -72,7 +72,7 @@ export default function DetailPanel() {
         className="absolute left-0 top-0 w-[56vw] h-full"
       >
         <img 
-          src="/detail_laundry.jpg" 
+          src={`${import.meta.env.BASE_URL}detail_laundry.jpg`} 
           alt="Detail care" 
           className="w-full h-full object-cover"
         />

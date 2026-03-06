@@ -85,7 +85,7 @@ export default function OurProperties() {
             className="relative aspect-square overflow-hidden group cursor-pointer"
           >
             <img 
-              src={property.image} 
+              src={`${import.meta.env.BASE_URL}${property.image.replace(/^\//, '')}`}
               alt={`Property ${index + 1}`}
               className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
             />

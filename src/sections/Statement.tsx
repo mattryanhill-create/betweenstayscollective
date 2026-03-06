@@ -114,7 +114,7 @@ export default function Statement() {
       >
         <img 
           ref={imageInnerRef}
-          src="/statement_hospitality.jpg" 
+          src={`${import.meta.env.BASE_URL}statement_hospitality.jpg`} 
           alt="Hospitality welcome" 
           className="w-full h-[calc(100%+8vh)] object-cover"
         />

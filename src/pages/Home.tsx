@@ -53,7 +53,7 @@ export default function Home() {
       >
         <div className="absolute inset-0">
           <img 
-            src="/hero_tampa.jpg" 
+            src={`${import.meta.env.BASE_URL}hero_tampa.jpg`} 
             alt="Tampa Bay" 
             className="w-full h-full object-cover"
           />
@@ -191,7 +191,7 @@ export default function Home() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="section-animate">
               <img 
-                src="/tampa_skyline.jpg" 
+                src={`${import.meta.env.BASE_URL}tampa_skyline.jpg`} 
                 alt="Tampa Bay" 
                 className="w-full"
               />

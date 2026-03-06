@@ -203,7 +203,7 @@ export default function Contact() {
         >
           <img 
             ref={imageInnerRef}
-            src="/contact_office.jpg" 
+            src={`${import.meta.env.BASE_URL}contact_office.jpg`} 
             alt="Contact us" 
             className="w-full h-[calc(100%+6vh)] object-cover"
           />

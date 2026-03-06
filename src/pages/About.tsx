@@ -98,7 +98,7 @@ export default function About() {
 
             <div className="section-animate">
               <img 
-                src="/team_matt_cherie.jpg" 
+                src={`${import.meta.env.BASE_URL}team_matt_cherie.jpg`} 
                 alt="Matt and Cherie" 
                 className="w-full"
               />
@@ -144,7 +144,7 @@ export default function About() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="section-animate">
               <img 
-                src="/tampa_skyline.jpg" 
+                src={`${import.meta.env.BASE_URL}tampa_skyline.jpg`} 
                 alt="Tampa Bay" 
                 className="w-full"
               />

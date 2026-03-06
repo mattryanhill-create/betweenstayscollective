@@ -30,7 +30,7 @@ export default function Hero() {
       {/* Background Image */}
       <div className="absolute inset-0">
         <img 
-          src="/hero_bedroom.jpg" 
+          src={`${import.meta.env.BASE_URL}hero_bedroom.jpg`} 
           alt="Between Stays Collective" 
           className="w-full h-full object-cover"
         />

@@ -97,7 +97,7 @@ export default function GalleryWall() {
         className="absolute left-[6vw] top-[10vh] w-[28vw] h-[80vh] shadow-card overflow-hidden"
       >
         <img 
-          src="/gallery_bathroom.jpg" 
+          src={`${import.meta.env.BASE_URL}gallery_bathroom.jpg`} 
           alt="Bathroom gallery" 
           className="w-full h-full object-cover"
         />
@@ -109,7 +109,7 @@ export default function GalleryWall() {
         className="absolute left-[36vw] top-[10vh] w-[58vw] h-[38vh] shadow-card overflow-hidden"
       >
         <img 
-          src="/gallery_bedroom.jpg" 
+          src={`${import.meta.env.BASE_URL}gallery_bedroom.jpg`} 
           alt="Bedroom gallery" 
           className="w-full h-full object-cover"
         />
@@ -121,7 +121,7 @@ export default function GalleryWall() {
         className="absolute left-[36vw] top-[52vh] w-[58vw] h-[38vh] shadow-card overflow-hidden"
       >
         <img 
-          src="/gallery_living.jpg" 
+          src={`${import.meta.env.BASE_URL}gallery_living.jpg`} 
           alt="Living room gallery" 
           className="w-full h-full object-cover"
         />
