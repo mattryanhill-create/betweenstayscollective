@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Between Stays Collective</title>
+  <script>
+    // Single Page App redirect
+    var path = window.location.pathname;
+    var search = window.location.search;
+    var hash = window.location.hash;
+    
+    // Store the path in sessionStorage so the app can pick it up
+    sessionStorage.setItem('spa-path', path + search + hash);
+    
+    // Redirect to root
+    window.location.replace('/');
+  </script>
+</head>
+<body>
+  <p>Loading Between Stays Collective...</p>
+</body>
+</html>
