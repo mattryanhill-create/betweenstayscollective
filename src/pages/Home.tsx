@@ -11,19 +11,19 @@ const MANAGER_ALTERNATIVES = [
     title: 'Switching from Vacasa',
     description:
       'See how moving from Vacasa to Between Stays lets you keep your reviews, lower your effective fees, and gain a truly local team.',
-    href: '#/blog/vacasa-alternative-in-tampa-bay',
+    href: '/blog/vacasa-alternative-in-tampa-bay',
   },
   {
     title: 'Switching from Evolve',
     description:
       'Tired of doing the on-the-ground work while Evolve handles the online piece? Learn what changes when Between Stays runs everything.',
-    href: '#/blog/evolve-alternative-in-tampa-bay',
+    href: '/blog/evolve-alternative-in-tampa-bay',
   },
   {
     title: 'Switching from Casago',
     description:
       'Concerned about the Casago–Vacasa merger? Explore what a stable, non-franchise partner in Tampa Bay looks like with Between Stays.',
-    href: '#/blog/casago-alternative-in-tampa-bay',
+    href: '/blog/casago-alternative-in-tampa-bay',
   },
 ];
 
