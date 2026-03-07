@@ -11,6 +11,9 @@ import Audit from './pages/Audit';
 import About from './pages/About';
 import FAQs from './pages/FAQs';
 import Contact from './pages/Contact';
+import VacasaAlternative from './pages/VacasaAlternative';
+import EvolveAlternative from './pages/EvolveAlternative';
+import CasagoAlternative from './pages/CasagoAlternative';
 
 import './App.css';
 
@@ -49,6 +52,9 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/faqs" element={<FAQs />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/blog/vacasa-alternative-in-tampa-bay" element={<VacasaAlternative />} />
+            <Route path="/blog/evolve-alternative-in-tampa-bay" element={<EvolveAlternative />} />
+            <Route path="/blog/casago-alternative-in-tampa-bay" element={<CasagoAlternative />} />
           </Routes>
         </main>
         <Footer />

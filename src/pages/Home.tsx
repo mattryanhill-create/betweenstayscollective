@@ -11,19 +11,19 @@ const MANAGER_ALTERNATIVES = [
     title: 'Switching from Vacasa',
     description:
       'See how moving from Vacasa to Between Stays lets you keep your reviews, lower your effective fees, and gain a truly local team.',
-    href: '/blog/vacasa-alternative-in-tampa-bay',
+    href: '#/blog/vacasa-alternative-in-tampa-bay',
   },
   {
     title: 'Switching from Evolve',
     description:
       'Tired of doing the on-the-ground work while Evolve handles the online piece? Learn what changes when Between Stays runs everything.',
-    href: '/blog/evolve-alternative-in-tampa-bay',
+    href: '#/blog/evolve-alternative-in-tampa-bay',
   },
   {
     title: 'Switching from Casago',
     description:
       'Concerned about the Casago–Vacasa merger? Explore what a stable, non-franchise partner in Tampa Bay looks like with Between Stays.',
-    href: '/blog/casago-alternative-in-tampa-bay',
+    href: '#/blog/casago-alternative-in-tampa-bay',
   },
 ];
 
@@ -271,9 +271,9 @@ export default function Home() {
 
           <div className="grid md:grid-cols-3 gap-8">
             {MANAGER_ALTERNATIVES.map((item, i) => (
-              <a
+              <Link
                 key={i}
-                href={item.href}
+                to={item.href}
                 className="section-animate group block bg-white p-8 text-center hover:shadow-lg transition-shadow duration-300"
               >
                 <h3 className="font-serif text-xl text-gray-900 mb-4 group-hover:text-[#5A7A6A] transition-colors">{item.title}</h3>
@@ -282,7 +282,7 @@ export default function Home() {
                   Read more
                   <ArrowRight className="ml-2 w-4 h-4" />
                 </span>
-              </a>
+              </Link>
             ))}
           </div>
         </div>
