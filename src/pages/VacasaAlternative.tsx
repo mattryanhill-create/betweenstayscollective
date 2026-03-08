@@ -27,6 +27,38 @@ export default function VacasaAlternative() {
     if (metaDesc) {
       metaDesc.setAttribute('content', 'Switching from Vacasa? Keep your reviews, lower your fees, and gain a truly local Tampa Bay team. See how Between Stays Collective compares.');
     }
+
+    // OG tags
+    const setMeta = (property: string, content: string) => {
+      let el = document.querySelector(`meta[property="${property}"]`);
+      if (!el) { el = document.createElement('meta'); el.setAttribute('property', property); document.head.appendChild(el); }
+      el.setAttribute('content', content);
+    };
+    setMeta('og:title', document.title);
+    setMeta('og:description', metaDesc?.getAttribute('content') || '');
+    setMeta('og:type', 'article');
+    setMeta('og:url', window.location.href);
+
+    // JSON-LD
+    let jsonLd = document.querySelector('script[data-blog-jsonld]');
+    if (!jsonLd) { jsonLd = document.createElement('script'); jsonLd.setAttribute('type', 'application/ld+json'); jsonLd.setAttribute('data-blog-jsonld', 'true'); document.head.appendChild(jsonLd); }
+    jsonLd.textContent = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": document.title,
+      "description": metaDesc?.getAttribute('content') || '',
+      "datePublished": "2025-03-07",
+      "publisher": { "@type": "Organization", "name": "Between Stays Collective" }
+    });
+
+    return () => {
+      const jsonLdEl = document.querySelector('script[data-blog-jsonld]');
+      if (jsonLdEl) jsonLdEl.remove();
+      ['og:title', 'og:description', 'og:type', 'og:url'].forEach((prop) => {
+        const el = document.querySelector(`meta[property="${prop}"]`);
+        if (el) el.remove();
+      });
+    };
   }, []);
 
   return (

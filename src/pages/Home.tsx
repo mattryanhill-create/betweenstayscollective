@@ -32,6 +32,10 @@ export default function Home() {
   const sectionsRef = useRef<(HTMLElement | null)[]>([]);
 
   useEffect(() => {
+    document.title = 'Between Stays Collective | Tampa Bay Co-Hosting';
+  }, []);
+
+  useEffect(() => {
     const ctx = gsap.context(() => {
       const heroElements = heroRef.current?.querySelectorAll('.hero-animate');
       if (heroElements && heroElements.length > 0) {

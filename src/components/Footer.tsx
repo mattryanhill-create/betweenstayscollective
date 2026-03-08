@@ -10,13 +10,18 @@ const footerLinks = {
     { label: 'FAQs', href: '/faqs' },
     { label: 'Contact', href: '/contact' },
   ],
+  blog: [
+    { label: 'Vacasa Alternative', href: '/blog/vacasa-alternative-in-tampa-bay' },
+    { label: 'Evolve Alternative', href: '/blog/evolve-alternative-in-tampa-bay' },
+    { label: 'Casago Alternative', href: '/blog/casago-alternative-in-tampa-bay' },
+  ],
 };
 
 export default function Footer() {
   return (
     <footer className="bg-gray-50 border-t border-gray-100">
       <div className="max-w-6xl mx-auto px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
           {/* Brand */}
           <div className="text-center md:text-left">
             <Link to="/" className="font-serif text-lg text-gray-900">
@@ -53,6 +58,25 @@ export default function Footer() {
             </h4>
             <ul className="space-y-3">
               {footerLinks.company.map((link) => (
+                <li key={link.label}>
+                  <Link
+                    to={link.href}
+                    className="body-text text-sm hover:text-[#5A7A6A] transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Blog */}
+          <div className="text-center md:text-left">
+            <h4 className="text-xs font-normal uppercase tracking-[0.1em] text-gray-500 mb-4">
+              Blog
+            </h4>
+            <ul className="space-y-3">
+              {footerLinks.blog.map((link) => (
                 <li key={link.label}>
                   <Link
                     to={link.href}
