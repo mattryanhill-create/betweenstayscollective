@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Allow: /owners/tampa-audit
+Allow: /owners/tampa-audit/thanks
 Disallow: /owners/
-Sitemap: https://betweenstaysco.com/sitemap.xml
+Sitemap: https://www.betweenstaysco.com/sitemap.xml
