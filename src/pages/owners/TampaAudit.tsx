@@ -1,6 +1,13 @@
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { gsap } from 'gsap';
+import { Phone } from 'lucide-react';
+
+const CONDENSED_ROWS = [
+  { feature: 'Who handles cleaners & vendors', managerValue: 'You do', betweenStaysValue: 'We do' },
+  { feature: 'Your weekly time commitment', managerValue: '10+ hours', betweenStaysValue: '0 hours' },
+  { feature: 'Reviews if you leave', managerValue: 'Lost', betweenStaysValue: 'Yours to keep' },
+];
 
 const COMPARISON_ROWS = [
   { feature: 'Cleaning coordination', managerValue: 'You or your cleaner handle it', betweenStaysValue: 'We schedule, inspect, and coordinate turnovers' },
@@ -37,10 +44,6 @@ const HOW_IT_WORKS_STEPS = [
 
 const FAQ_ITEMS = [
   {
-    q: "I'm with Evolve/Vacasa/Casago—does this apply to me?",
-    a: "Yes. We regularly talk with owners working with national brands like Evolve, Vacasa, Casago, and similar companies. The process is the same: we review your agreement, plan the right notice period, and handle setup so you don't lose your reviews or bookings.",
-  },
-  {
     q: 'Will I lose my reviews if I switch?',
     a: "Our model keeps your listing under your account, not ours. That means your Airbnb or Vrbo reviews stay with you instead of being tied to a manager's profile, so you're not starting from zero when you change partners.",
   },
@@ -64,14 +67,16 @@ function setRobotsMeta(content: string) {
   el.setAttribute('content', content);
 }
 
+declare global {
+  interface Window {
+    gtag?: (...args: unknown[]) => void;
+  }
+}
+
 export default function TampaAudit() {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
     propertyAddress: '',
-    currentSituation: '',
-    biggestHeadache: '',
+    email: '',
   });
   const heroRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
@@ -101,118 +106,127 @@ export default function TampaAudit() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', 'generate_lead', { page_location: window.location.href });
+    }
     navigate('/owners/tampa-audit/thanks');
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleCallClick = () => {
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', 'call_click', { location: 'mobile_sticky_bar' });
+    }
   };
 
   return (
     <div className="bg-white" id="hero-form">
+      {/* Minimal header - logo only, non-clickable */}
+      <header className="fixed top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-sm py-5">
+        <div className="max-w-6xl mx-auto px-6 lg:px-12">
+          <span className="font-serif text-sm uppercase tracking-[0.2em] text-gray-900 cursor-default">
+            Between Stays Collective
+          </span>
+        </div>
+      </header>
+
       {/* Hero Section */}
-      <section ref={heroRef} className="pt-32 pb-20">
+      <section ref={heroRef} className="pt-32 pb-12">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
             <div>
               <h1 className="hero-animate font-serif text-4xl sm:text-5xl text-gray-900 leading-tight mb-6">
-                Done-for-you Airbnb management for Tampa Bay owners leaving national managers.
+                Still Coordinating Cleaners While Your &ldquo;Full-Service&rdquo; Manager Takes 30%?
               </h1>
               <p className="hero-animate body-text text-lg mb-4">
-                Keep your reviews, work 0 hours/week, and typically earn more with a local, full-service partner.
+                Tampa Bay owners are switching from Evolve, Vacasa & Casago to keep their reviews, reclaim 10+ hours/week, and typically earn more—with a local team that actually handles everything.
               </p>
-              <p className="hero-animate body-text text-base">
-                This page is for Tampa Bay owners currently with Evolve, Vacasa, Casago, or similar companies who are tired of doing the on-the-ground work while a national brand handles only the online piece.
-              </p>
+              <div className="hero-animate flex flex-wrap gap-x-4 gap-y-1 text-sm text-gray-600 mb-0">
+                <span className="inline-flex items-center px-2.5 py-0.5 rounded bg-gray-100 text-gray-700">
+                  Join 200+ Tampa Bay owners who&apos;ve switched
+                </span>
+                <span>·</span>
+                <span>+31% avg revenue increase</span>
+                <span>·</span>
+                <span>0 hours/week</span>
+              </div>
             </div>
 
             <div className="hero-animate bg-gray-50 border border-gray-100 p-8">
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Name *</label>
+                  <label htmlFor="propertyAddress" className="block text-sm font-medium text-gray-700 mb-2">Property Address *</label>
                   <input
+                    id="propertyAddress"
                     type="text"
-                    name="name"
+                    name="propertyAddress"
                     required
-                    value={formData.name}
+                    autoComplete="street-address"
+                    value={formData.propertyAddress}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-200 focus:border-gray-900 transition-colors"
-                    placeholder="Your name"
+                    className="w-full px-4 py-3 min-h-[48px] border border-gray-200 focus:border-gray-900 transition-colors"
+                    placeholder="Enter your Tampa Bay property address"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Email *</label>
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">Email *</label>
                   <input
+                    id="email"
                     type="email"
                     name="email"
                     required
+                    autoComplete="email"
                     value={formData.email}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-200 focus:border-gray-900 transition-colors"
+                    className="w-full px-4 py-3 min-h-[48px] border border-gray-200 focus:border-gray-900 transition-colors"
                     placeholder="your@email.com"
                   />
                 </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Phone *</label>
-                  <input
-                    type="tel"
-                    name="phone"
-                    required
-                    value={formData.phone}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-200 focus:border-gray-900 transition-colors"
-                    placeholder="(123) 456-7890"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Property address or neighborhood</label>
-                  <input
-                    type="text"
-                    name="propertyAddress"
-                    value={formData.propertyAddress}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-200 focus:border-gray-900 transition-colors"
-                    placeholder="e.g., St. Pete Beach, Hyde Park"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Current situation *</label>
-                  <select
-                    name="currentSituation"
-                    required
-                    value={formData.currentSituation}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-200 focus:border-gray-900 transition-colors bg-white"
-                  >
-                    <option value="">Select</option>
-                    <option value="evolve">Evolve</option>
-                    <option value="vacasa">Vacasa</option>
-                    <option value="casago">Casago</option>
-                    <option value="self-managing">Self-managing</option>
-                    <option value="other">Other</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Biggest headache right now</label>
-                  <textarea
-                    name="biggestHeadache"
-                    rows={3}
-                    value={formData.biggestHeadache}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-200 focus:border-gray-900 transition-colors resize-none"
-                    placeholder="Optional—tell us what's frustrating you"
-                  />
-                </div>
-                <button type="submit" className="w-full btn-primary py-4">
-                  Get my free property audit
+                <button type="submit" className="w-full btn-primary py-4 min-h-[48px]">
+                  See My Property&apos;s Potential
                 </button>
+                <p className="body-text text-sm text-gray-600">
+                  Limited to 15 free audits per month. Spring booking season starts now.
+                </p>
+                <p className="body-text text-xs text-gray-500">
+                  No spam. No obligation. Just numbers.
+                </p>
               </form>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Comparison Section */}
+      {/* Condensed 3-row comparison table */}
+      <section className="py-8 px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto">
+          <div className="overflow-x-auto">
+            <table className="w-full border-collapse text-sm">
+              <thead>
+                <tr className="border-b border-gray-200">
+                  <th className="font-serif text-left py-2 px-3 text-gray-900 font-semibold">Feature</th>
+                  <th className="font-serif text-left py-2 px-3 text-gray-900 font-semibold">Big national manager</th>
+                  <th className="font-serif text-left py-2 px-3 text-gray-900 font-semibold">Between Stays Collective</th>
+                </tr>
+              </thead>
+              <tbody>
+                {CONDENSED_ROWS.map((row, i) => (
+                  <tr key={i} className={`border-b border-gray-200 ${i % 2 === 0 ? 'bg-white' : 'bg-gray-50/50'}`}>
+                    <td className="py-2 px-3 text-gray-900 font-medium">{row.feature}</td>
+                    <td className="py-2 px-3 text-gray-600">{row.managerValue}</td>
+                    <td className="py-2 px-3 text-[#5A7A6A] font-medium">{row.betweenStaysValue}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      {/* Full Comparison Section */}
       <section className="py-24 bg-gray-50">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <h2 className="font-serif text-3xl sm:text-4xl text-gray-900 mb-6">
@@ -264,7 +278,7 @@ export default function TampaAudit() {
             </blockquote>
             <div className="text-center">
               <p className="font-serif text-lg text-gray-900 mb-4">Want numbers like this for your property?</p>
-              <a href="#hero-form" className="btn-primary">Get my free property audit</a>
+              <a href="#hero-form" className="btn-primary min-h-[48px] inline-flex items-center">Get my free property audit</a>
             </div>
           </div>
         </div>
@@ -311,7 +325,7 @@ export default function TampaAudit() {
       </section>
 
       {/* Final CTA Block */}
-      <section className="py-24 bg-gray-50">
+      <section className="py-24 pb-32 md:pb-24 bg-gray-50">
         <div className="max-w-3xl mx-auto px-6 lg:px-8 text-center">
           <h2 className="font-serif text-3xl sm:text-4xl text-gray-900 mb-6">
             Ready to see what a local, full-service partner could do for your property?
@@ -319,11 +333,29 @@ export default function TampaAudit() {
           <p className="body-text text-lg mb-8">
             Request a free property audit and get a numbers-first view of how your current manager compares to a Tampa Bay team that runs everything on the ground for you.
           </p>
-          <a href="#hero-form" className="btn-primary py-4 px-10">
+          <a href="#hero-form" className="btn-primary py-4 px-10 min-h-[48px] inline-flex items-center">
             Get my free property audit
           </a>
         </div>
       </section>
+
+      {/* Sticky bottom CTA bar - mobile only */}
+      <div className="fixed bottom-0 left-0 right-0 md:hidden h-14 z-50 bg-[#111827] text-white flex items-center justify-between px-6">
+        <a
+          href="tel:+18135551234"
+          onClick={handleCallClick}
+          className="flex items-center gap-2 text-white hover:opacity-80 transition-opacity"
+        >
+          <Phone className="w-5 h-5" strokeWidth={1.5} />
+          <span className="text-sm font-medium">Call</span>
+        </a>
+        <a
+          href="#hero-form"
+          className="btn-primary min-h-[40px] !bg-[#5A7A6A] hover:!bg-[#3D5A4A] text-white text-sm px-4 py-2"
+        >
+          Get My Free Tampa Audit
+        </a>
+      </div>
     </div>
   );
 }

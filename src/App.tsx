@@ -40,14 +40,17 @@ function RouteHandler() {
   return null;
 }
 
-function App() {
+const TAMPA_AUDIT_PATHS = ['/owners/tampa-audit', '/owners/tampa-audit/thanks'];
+
+function AppLayout() {
+  const location = useLocation();
+  const hideNavFooter = TAMPA_AUDIT_PATHS.some((p) => location.pathname === p || location.pathname.startsWith(p + '/'));
+
   return (
-    <Router>
-      <RouteHandler />
-      <div className="min-h-screen bg-white flex flex-col">
-        <Navigation />
-        <main className="flex-1">
-          <Routes>
+    <div className="min-h-screen bg-white flex flex-col">
+      {!hideNavFooter && <Navigation />}
+      <main className="flex-1">
+        <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/services" element={<Services />} />
             <Route path="/audit" element={<Audit />} />
@@ -61,8 +64,16 @@ function App() {
             <Route path="/owners/tampa-audit/thanks" element={<TampaAuditThanks />} />
           </Routes>
         </main>
-        <Footer />
+      {!hideNavFooter && <Footer />}
       </div>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <RouteHandler />
+      <AppLayout />
     </Router>
   );
 }
