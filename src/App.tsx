@@ -14,6 +14,8 @@ import Contact from './pages/Contact';
 import VacasaAlternative from './pages/VacasaAlternative';
 import EvolveAlternative from './pages/EvolveAlternative';
 import CasagoAlternative from './pages/CasagoAlternative';
+import TampaAudit from './pages/owners/TampaAudit';
+import TampaAuditThanks from './pages/owners/TampaAuditThanks';
 
 import './App.css';
 
@@ -55,6 +57,8 @@ function App() {
             <Route path="/blog/vacasa-alternative-in-tampa-bay" element={<VacasaAlternative />} />
             <Route path="/blog/evolve-alternative-in-tampa-bay" element={<EvolveAlternative />} />
             <Route path="/blog/casago-alternative-in-tampa-bay" element={<CasagoAlternative />} />
+            <Route path="/owners/tampa-audit" element={<TampaAudit />} />
+            <Route path="/owners/tampa-audit/thanks" element={<TampaAuditThanks />} />
           </Routes>
         </main>
         <Footer />
