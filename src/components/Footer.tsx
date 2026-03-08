@@ -20,7 +20,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="text-center md:text-left">
             <Link to="/" className="font-serif text-lg text-gray-900">
-              Between Stays
+              Between Stays Collective
             </Link>
             <p className="mt-4 body-text text-sm">
               Local co-hosting for Tampa Bay Airbnb and VRBO hosts.

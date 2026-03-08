@@ -27,7 +27,6 @@ export type SwitchingLayoutProps = {
 
 export default function SwitchingLayout({
   managerName,
-  managerSlug,
   heroTitle,
   heroIntro,
   problemsContent,

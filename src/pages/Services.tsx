@@ -95,7 +95,7 @@ export default function Services() {
             Full-service co-hosting for Tampa Bay
           </h1>
           <p className="section-animate body-text text-lg max-w-2xl mx-auto">
-            We handle the day-to-day so you can enjoy the benefits of short-term rental income without the work. You keep your listing, your reviews, and your control.
+            We handle the day-to-day so you can enjoy the benefits of short-term rental income without the work. You keep your listing, your reviews, and your control. Switching from <Link to="/blog/vacasa-alternative-in-tampa-bay" className="text-[#5A7A6A] hover:text-[#3D5A4A]">Vacasa</Link>, <Link to="/blog/evolve-alternative-in-tampa-bay" className="text-[#5A7A6A] hover:text-[#3D5A4A]">Evolve</Link>, or <Link to="/blog/casago-alternative-in-tampa-bay" className="text-[#5A7A6A] hover:text-[#3D5A4A]">Casago</Link>? See our guides for each.
           </p>
         </div>
       </section>

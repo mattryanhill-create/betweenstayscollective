@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { Check } from 'lucide-react';
 
@@ -10,6 +11,8 @@ export default function Audit() {
     listingUrl: '',
     city: '',
     neighborhood: '',
+    currentManager: '',
+    revenueSnapshot: '',
     message: '',
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -51,9 +54,9 @@ export default function Audit() {
           <p className="body-text mb-8">
             We've received your audit request. We'll review your listing and be in touch within 2–3 business days.
           </p>
-          <a href="/" className="btn-primary">
+          <Link to="/" className="btn-primary">
             Back to Home
-          </a>
+          </Link>
         </div>
       </div>
     );
@@ -80,20 +83,20 @@ export default function Audit() {
           <div className="grid sm:grid-cols-2 gap-8">
             {[
               {
-                title: 'Visibility Assessment',
-                description: 'How your listing performs in search results compared to similar properties.',
+                title: 'Revenue Projection',
+                description: 'A clear picture of what your property could earn with optimized management.',
               },
               {
-                title: 'Presentation Review',
-                description: 'Honest feedback on your photos, title, description, and pricing.',
+                title: 'Competitor Analysis',
+                description: 'How your listing compares to similar properties in your market.',
               },
               {
-                title: 'Conversion Analysis',
-                description: 'What might be preventing guests from booking.',
+                title: 'Specific Listing Optimization Recommendations',
+                description: 'Actionable suggestions for photos, copy, pricing, and positioning.',
               },
               {
-                title: 'Actionable Recommendations',
-                description: 'Specific suggestions for improvement, prioritized by impact.',
+                title: 'Transparent Fee Breakdown',
+                description: 'Honest comparison of what you pay now vs. what you could pay with us.',
               },
             ].map((item, i) => (
               <div key={i} className="bg-white p-8 text-center">
@@ -182,6 +185,23 @@ export default function Audit() {
               <div className="grid sm:grid-cols-2 gap-6">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Current manager
+                  </label>
+                  <select
+                    name="currentManager"
+                    value={formData.currentManager}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 border border-gray-200 focus:border-gray-900 transition-colors bg-white"
+                  >
+                    <option value="">Select if applicable</option>
+                    <option value="vacasa">Vacasa</option>
+                    <option value="evolve">Evolve</option>
+                    <option value="casago">Casago</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
                     City *
                   </label>
                   <select
@@ -210,6 +230,20 @@ export default function Audit() {
                     placeholder="e.g., Ybor City"
                   />
                 </div>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Revenue / occupancy snapshot (optional)
+                </label>
+                <textarea
+                  name="revenueSnapshot"
+                  rows={2}
+                  value={formData.revenueSnapshot}
+                  onChange={handleChange}
+                  className="w-full px-4 py-3 border border-gray-200 focus:border-gray-900 transition-colors resize-none"
+                  placeholder="e.g., $X/month revenue, Y% occupancy, or paste a screenshot summary"
+                />
               </div>
 
               <div>

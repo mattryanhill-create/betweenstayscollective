@@ -59,6 +59,19 @@ const faqCategories = [
     ],
   },
   {
+    title: 'Switching Managers',
+    faqs: [
+      {
+        q: "I'm with Vacasa, Evolve, or Casago—can I switch?",
+        a: (
+          <>
+            Yes. We've written guides for each: <Link to="/blog/vacasa-alternative-in-tampa-bay" className="text-[#5A7A6A] hover:text-[#3D5A4A]">Vacasa alternative</Link>, <Link to="/blog/evolve-alternative-in-tampa-bay" className="text-[#5A7A6A] hover:text-[#3D5A4A]">Evolve alternative</Link>, and <Link to="/blog/casago-alternative-in-tampa-bay" className="text-[#5A7A6A] hover:text-[#3D5A4A]">Casago alternative</Link>. You keep your listing and reviews—we're added as co-hosts. Most switches are complete within 1–2 weeks.
+          </>
+        ),
+      },
+    ],
+  },
+  {
     title: 'Your Listing',
     faqs: [
       {

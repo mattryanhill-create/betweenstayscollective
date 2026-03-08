@@ -49,7 +49,7 @@ export default function Navigation() {
               onClick={handleHomeClick}
               className="font-serif text-sm uppercase tracking-[0.2em] text-gray-900 hover:opacity-60 transition-opacity"
             >
-              Between Stays
+              Between Stays Collective
             </button>
 
             {/* Desktop Navigation */}

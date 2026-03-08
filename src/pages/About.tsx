@@ -180,7 +180,7 @@ export default function About() {
             Wondering what you're missing?
           </h2>
           <p className="section-animate body-text mb-10">
-            Let's take a look at your listing and see what you could be earning—with no pressure and no obligation.
+            Let's take a look at your listing and see what you could be earning—with no pressure and no obligation. Switching from <Link to="/blog/vacasa-alternative-in-tampa-bay" className="text-[#5A7A6A] hover:text-[#3D5A4A]">Vacasa</Link>, <Link to="/blog/evolve-alternative-in-tampa-bay" className="text-[#5A7A6A] hover:text-[#3D5A4A]">Evolve</Link>, or <Link to="/blog/casago-alternative-in-tampa-bay" className="text-[#5A7A6A] hover:text-[#3D5A4A]">Casago</Link>? We've got guides for that.
           </p>
           <Link to="/audit" className="section-animate btn-primary">
             See what you could be earning
