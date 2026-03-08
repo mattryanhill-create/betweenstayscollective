@@ -29,6 +29,9 @@ jobs:
       - run: npm ci
       - run: npm run build
       - run: cp dist/index.html dist/404.html
+      - run: cp public/sitemap.xml dist/sitemap.xml
+      - run: cp public/robots.txt dist/robots.txt
+      - run: ls -la dist/sitemap.xml dist/robots.txt dist/404.html
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
