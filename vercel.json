@@ -1,22 +1,7 @@
 {
-  "cleanUrls": false,
-  "routes": [
-    {
-      "src": "/sitemap.xml",
-      "dest": "/api/sitemap",
-      "methods": ["GET"]
-    },
-    {
-      "src": "/robots.txt",
-      "dest": "/api/robots",
-      "methods": ["GET"]
-    },
-    {
-      "handle": "filesystem"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
-    }
+  "rewrites": [
+    { "source": "/sitemap.xml", "destination": "/api/sitemap" },
+    { "source": "/robots.txt", "destination": "/api/robots" },
+    { "source": "/((?!api/).*)", "destination": "/index.html" }
   ]
 }
