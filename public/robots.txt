@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /owners/
+Sitemap: https://betweenstaysco.com/sitemap.xml
