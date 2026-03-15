@@ -31,8 +31,25 @@ export default function Audit() {
     return () => ctx.revert();
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    try {
+      await fetch(
+        "https://drivewayzusa.app.n8n.cloud/webhook/betweenstays-tampa-audit",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            email: formData.email,
+            propertyAddress: `${formData.city}${formData.neighborhood ? ', ' + formData.neighborhood : ''}`,
+            listingUrl: formData.listingUrl,
+            biggestChallenge: formData.currentManager,
+          }),
+        }
+      );
+    } catch (err) {
+      console.error("Webhook error:", err);
+    }
     setIsSubmitted(true);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
