@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
+import { useCanonical } from './hooks/useCanonical';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -23,6 +24,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 // Handle scroll and GSAP refresh on route change
 function RouteHandler() {
+  useCanonical();
   const location = useLocation();
 
   useEffect(() => {
