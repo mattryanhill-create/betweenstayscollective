@@ -44,18 +44,6 @@ const SITEMAP = `<?xml version="1.0" encoding="UTF-8"?>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.betweenstaysco.com/owners/tampa-audit</loc>
-    <lastmod>2026-03-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://www.betweenstaysco.com/owners/tampa-audit/thanks</loc>
-    <lastmod>2026-03-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
     <loc>https://www.betweenstaysco.com/blog/vacasa-alternative-in-tampa-bay</loc>
     <lastmod>2026-03-08</lastmod>
     <changefreq>monthly</changefreq>
