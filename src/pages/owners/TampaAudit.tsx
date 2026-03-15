@@ -106,6 +106,17 @@ export default function TampaAudit() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    // Fire webhook (don't await — don't block UX)
+    fetch('https://drivewayzusa.app.n8n.cloud/webhook/betweenstays-tampa-audit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        propertyAddress: formData.propertyAddress,
+        email: formData.email,
+        source: 'tampa-audit-lp',
+      }),
+    }).catch(() => {});
+
     if (typeof window.gtag === 'function') {
       window.gtag('event', 'generate_lead', { page_location: window.location.href });
     }

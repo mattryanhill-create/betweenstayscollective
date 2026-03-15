@@ -3,8 +3,25 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Link } from 'react-router-dom';
 import { ChevronDown, ArrowRight } from 'lucide-react';
+import { useFAQSchema } from '@/hooks/useFAQSchema';
 
 gsap.registerPlugin(ScrollTrigger);
+
+const faqs = [
+  { question: 'What is Between Stays Collective?', answer: 'Between Stays Collective is a local, hands-on co-hosting company serving Tampa and St. Petersburg, Florida. We help self-managing Airbnb and VRBO hosts earn more through thoughtful optimization and professional management.' },
+  { question: 'Who are Matt and Cherie?', answer: 'Matt and Cherie are the co-founders. They spent three years living in short-term rentals across different countries, experiencing firsthand what makes a stay memorable. This guest perspective informs everything they do.' },
+  { question: 'What areas do you serve?', answer: 'We specialize in Tampa and St. Petersburg, Florida. In Tampa: Ybor City, Channel District, Hyde Park, Seminole Heights, Downtown. In St. Pete: Downtown, St. Pete Beach, Pass-a-Grille, North St. Petersburg, Gulfport.' },
+  { question: 'What does co-hosting include?', answer: 'We handle listing optimization, guest communication, pricing strategy, calendar management, cleaner coordination, and issue resolution. You keep your listing and maintain full control.' },
+  { question: 'How do I get started?', answer: 'Start by requesting a free audit. We will review your listing and share our findings within 2-3 business days. If we are a good fit, we will propose a plan tailored to your property.' },
+  { question: 'How long before I see results?', answer: 'Most hosts notice improvements within 30 days, with more significant changes by 90 days. Results vary based on your starting point and market conditions.' },
+  { question: 'How much does it cost?', answer: 'We charge a percentage of booking revenue—typically 15-25% depending on your property and needs. No setup fees, no monthly retainers. We only earn when you do.' },
+  { question: 'Are there long-term contracts?', answer: 'No. We start with a 90-day trial period. After that, we move to month-to-month. You can cancel anytime with 30 days notice.' },
+  { question: 'Do you charge setup fees?', answer: 'No setup fees for full-service co-hosting. For one-time listing optimization projects, we charge a flat fee based on scope.' },
+  { question: "I'm with Vacasa, Evolve, or Casago—can I switch?", answer: "Yes. We've written guides for each: Vacasa alternative, Evolve alternative, and Casago alternative. You keep your listing and reviews—we're added as co-hosts. Most switches are complete within 1–2 weeks." },
+  { question: 'Do I keep control of my listing?', answer: 'Yes. Your listing stays in your Airbnb or VRBO account. You maintain full ownership and control. We operate as co-hosts with permissions you set.' },
+  { question: 'What happens to my reviews?', answer: 'You keep everything. All reviews earned while we work together stay on your account. If we part ways, you walk away with your entire reputation intact.' },
+  { question: 'Can I still access my listing?', answer: 'Absolutely. You retain full access and can see all activity, messages, and performance data.' },
+];
 
 const faqCategories = [
   {
@@ -93,6 +110,8 @@ const faqCategories = [
 export default function FAQs() {
   const [openIndex, setOpenIndex] = useState<string | null>(null);
   const heroRef = useRef<HTMLDivElement>(null);
+
+  useFAQSchema(faqs);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
