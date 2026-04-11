@@ -34,8 +34,25 @@ export default function TampaAuditThanks() {
     };
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    try {
+      await fetch(
+        "https://drivewayzusa.app.n8n.cloud/webhook/betweenstays-tampa-audit",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            email: "profile-update",
+            phone: formData.phone,
+            currentSituation: formData.currentSituation,
+            biggestHeadache: formData.biggestHeadache,
+          }),
+        }
+      );
+    } catch (err) {
+      console.error("Webhook error:", err);
+    }
     if (typeof window.gtag === 'function') {
       window.gtag('event', 'lead_submit', { page_location: window.location.href });
     }

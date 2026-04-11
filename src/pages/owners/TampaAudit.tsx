@@ -203,6 +203,9 @@ export default function TampaAudit() {
                 <button type="submit" className="w-full btn-primary py-4 min-h-[48px]">
                   See My Property&apos;s Potential
                 </button>
+                <p className="text-center text-sm text-gray-500 mb-2">
+                  <span className="font-semibold text-gray-700">12</span> Tampa Bay owners audited this month
+                </p>
                 <p className="body-text text-sm text-gray-600">
                   Limited to 15 free audits per month. Spring booking season starts now.
                 </p>
