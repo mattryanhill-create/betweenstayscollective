@@ -8,7 +8,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "postbuild": "npx serve dist -l 4173 & sleep 3 && npx tsx prerender.ts; kill %1 || true"
+    "postbuild": "react-snap"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
@@ -80,7 +80,28 @@
     "typescript-eslint": "^8.46.4",
     "vite": "^7.2.4",
     "puppeteer": "^23.0.0",
-    "tsx": "^4.19.0",
-    "serve": "^14.2.0"
+    "react-snap": "^1.23.0"
+  },
+  "reactSnap": {
+    "source": "dist",
+    "include": [
+      "/",
+      "/services",
+      "/audit",
+      "/about",
+      "/faqs",
+      "/contact",
+      "/blog/vacasa-alternative-in-tampa-bay",
+      "/blog/evolve-alternative-in-tampa-bay",
+      "/blog/casago-alternative-in-tampa-bay"
+    ],
+    "minifyHtml": {
+      "collapseWhitespace": false
+    },
+    "puppeteerArgs": [
+      "--no-sandbox",
+      "--disable-setuid-sandbox"
+    ],
+    "skipThirdPartyRequests": true
   }
 }
