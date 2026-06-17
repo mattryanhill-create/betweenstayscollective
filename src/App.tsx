@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useCanonical } from './hooks/useCanonical';
+import { initScrollDepth } from './lib/analytics';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -17,6 +18,10 @@ import EvolveAlternative from './pages/EvolveAlternative';
 import CasagoAlternative from './pages/CasagoAlternative';
 import TampaAudit from './pages/owners/TampaAudit';
 import TampaAuditThanks from './pages/owners/TampaAuditThanks';
+import LocationStubResolver from './pages/locations/LocationStubResolver';
+import CompareStub from './pages/compare/CompareStub';
+import ReviewStub from './pages/reviews/ReviewStub';
+import { ExitIntentModal } from './components/programmatic/ExitIntentModal';
 
 import './App.css';
 
@@ -48,6 +53,10 @@ function AppLayout() {
   const location = useLocation();
   const hideNavFooter = TAMPA_AUDIT_PATHS.some((p) => location.pathname === p || location.pathname.startsWith(p + '/'));
 
+  useEffect(() => {
+    return initScrollDepth();
+  }, []);
+
   return (
     <div className="min-h-screen bg-white flex flex-col">
       {!hideNavFooter && <Navigation />}
@@ -64,9 +73,13 @@ function AppLayout() {
             <Route path="/blog/casago-alternative-in-tampa-bay" element={<CasagoAlternative />} />
             <Route path="/owners/tampa-audit" element={<TampaAudit />} />
             <Route path="/owners/tampa-audit/thanks" element={<TampaAuditThanks />} />
+            <Route path="/locations/:slug" element={<LocationStubResolver />} />
+            <Route path="/compare/:slug" element={<CompareStub />} />
+            <Route path="/reviews/:slug" element={<ReviewStub />} />
           </Routes>
         </main>
       {!hideNavFooter && <Footer />}
+      <ExitIntentModal />
       </div>
   );
 }
