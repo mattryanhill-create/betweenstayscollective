@@ -2,6 +2,8 @@ import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { usePageSeo } from '@/hooks/usePageSeo';
 import { getSubmarketBySlug } from '@/data/submarkets';
+import { getCityContent } from '@/data/cityContent';
+import { Breadcrumbs } from '@/components/programmatic/Breadcrumbs';
 import { EyebrowBadge } from '@/components/programmatic/EyebrowBadge';
 import { SubmarketStatGrid } from '@/components/programmatic/SubmarketStatGrid';
 import { ProblemSection } from '@/components/programmatic/ProblemSection';
@@ -10,18 +12,18 @@ import { PlaceholderTestimonial } from '@/components/programmatic/PlaceholderTes
 import { FaqAccordion, type FaqItem } from '@/components/programmatic/FaqAccordion';
 import { AuditCtaBlock } from '@/components/programmatic/AuditCtaBlock';
 import { InternalLinkCluster } from '@/components/programmatic/InternalLinkCluster';
-import { Breadcrumbs } from '@/components/programmatic/Breadcrumbs';
 import { initScrollDepth, trackEvent } from '@/lib/analytics';
 
-const SUBMARKET_SLUG = 'seminole';
-const PAGE_PATH = '/locations/seminole-airbnb-cohost';
-const SOURCE_TAG = 'seminole-geo';
+interface Props {
+  slug: string;
+  pagePath: string;
+}
 
-const SEMINOLE_FAQS: FaqItem[] = [
+const SHARED_FAQS: FaqItem[] = [
   {
-    question: 'How is this different from Vacasa or Evolve in Seminole?',
+    question: 'How is this different from Vacasa or Evolve?',
     answer:
-      'Vacasa puts your Seminole listing under their account, which means your reviews and Superhost history stay with them if you leave. Our model keeps your listing under your name, with us added as a co-host. Evolve charges 10% but leaves you to coordinate cleaning, vendors, and guest issues yourself. We are 30% all-in and handle the operational work.',
+      'Vacasa puts your listing under their account, which means your reviews and Superhost history stay with them if you leave. Our model keeps your listing under your name, with us added as a co-host. Evolve charges 10% but leaves you to coordinate cleaning, vendors, and guest issues yourself. We are 30% all-in and handle the operational work.',
   },
   {
     question: 'Am I locked into a long-term contract?',
@@ -34,26 +36,30 @@ const SEMINOLE_FAQS: FaqItem[] = [
       'Every Airbnb booking is covered by AirCover, which provides up to $3 million in primary host damage protection plus liability coverage. We screen all guests, require government ID verification, and decline anything that does not pass our local rule set. We have not had a major damage incident in our Tampa Bay portfolio.',
   },
   {
-    question: 'How quickly will I see results in Seminole?',
-    answer:
-      'Most owners see their first reprice within 7 days. Listing photography and copy upgrades happen in the first 30 days. The full revenue impact typically shows in months 2-3 once dynamic pricing has data to work with. Seminole specifically benefits from local pricing because the demand patterns are different from the beach submarkets.',
-  },
-  {
-    question: 'Do you take properties outside Seminole?',
-    answer:
-      'Yes. We work across Pinellas County including Largo, Dunedin, Pinellas Park, Clearwater, St. Petersburg, and Palm Harbor. We do not take properties outside Tampa Bay because the boutique model breaks if the team is not local.',
-  },
-  {
     question: 'What happens if it does not work out?',
     answer:
       'Give us 30 days notice and we hand the listing back. No termination fee, no penalty, no claim on your future bookings. Other owners who have asked this question felt the same hesitation. What they found is that knowing the exit is clean made the decision to start much easier.',
   },
 ];
 
-export default function SeminoleAirbnbCohost() {
-  const submarket = getSubmarketBySlug(SUBMARKET_SLUG);
+const NEARBY_CITIES: Record<string, string> = {
+  largo: 'seminole',
+  dunedin: 'palm-harbor',
+  'pinellas-park': 'st-petersburg',
+  clearwater: 'largo',
+  'st-petersburg': 'pinellas-park',
+  'palm-harbor': 'dunedin',
+  seminole: 'largo',
+};
 
-  const canonical = `https://www.betweenstaysco.com${PAGE_PATH}`;
+export default function GeoLandingTemplate({ slug, pagePath }: Props) {
+  const submarket = getSubmarketBySlug(slug);
+  const cityData = getCityContent(slug);
+
+  const canonical = `https://www.betweenstaysco.com${pagePath}`;
+  const sourceTag = `${slug}-geo`;
+  const allFaqs: FaqItem[] = [...SHARED_FAQS, ...(cityData?.cityFaqs ?? [])];
+  const nearbySlug = NEARBY_CITIES[slug] || 'seminole';
 
   const schemaJson = {
     '@context': 'https://schema.org',
@@ -62,26 +68,22 @@ export default function SeminoleAirbnbCohost() {
         '@type': 'LocalBusiness',
         '@id': `${canonical}#business`,
         name: 'Between Stays Collective',
-        description:
-          'Boutique short-term rental co-hosting for Seminole, FL property owners. Local team, owner keeps the listing, no long-term contracts.',
+        description: `Boutique short-term rental co-hosting for ${submarket?.city}, ${submarket?.state} property owners. Local team, owner keeps the listing, no contracts.`,
         url: canonical,
-        areaServed: {
-          '@type': 'City',
-          name: 'Seminole, FL',
-        },
+        areaServed: { '@type': 'City', name: `${submarket?.city}, ${submarket?.state}` },
         priceRange: '$$',
       },
       {
         '@type': 'BreadcrumbList',
         itemListElement: [
           { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.betweenstaysco.com/' },
-          { '@type': 'ListItem', position: 2, name: 'Locations', item: 'https://www.betweenstaysco.com/locations/seminole-airbnb-cohost' },
-          { '@type': 'ListItem', position: 3, name: 'Seminole', item: canonical },
+          { '@type': 'ListItem', position: 2, name: 'Locations', item: `https://www.betweenstaysco.com${pagePath}` },
+          { '@type': 'ListItem', position: 3, name: submarket?.city, item: canonical },
         ],
       },
       {
         '@type': 'FAQPage',
-        mainEntity: SEMINOLE_FAQS.map((f) => ({
+        mainEntity: allFaqs.map((f) => ({
           '@type': 'Question',
           name: f.question,
           acceptedAnswer: { '@type': 'Answer', text: f.answer },
@@ -91,9 +93,8 @@ export default function SeminoleAirbnbCohost() {
   };
 
   usePageSeo({
-    title: 'Seminole, FL Airbnb Co-Hosting | Between Stays Collective',
-    description:
-      "Boutique short-term rental co-hosting for Seminole, FL owners. Local team, you keep the listing and the reviews, no long-term contracts. See your property's real revenue potential.",
+    title: `${submarket?.city}, ${submarket?.state} Airbnb Co-Hosting | Between Stays Collective`,
+    description: `Boutique short-term rental co-hosting for ${submarket?.city}, ${submarket?.state} owners. Local team, you keep the listing and the reviews, no contracts. See your property's real revenue potential.`,
     canonical,
     ogImage: 'https://www.betweenstaysco.com/images/bsc-og-default.jpg',
     schemaJson,
@@ -104,8 +105,7 @@ export default function SeminoleAirbnbCohost() {
     return cleanup;
   }, []);
 
-  // Submarket should always exist for this hardcoded slug.
-  if (!submarket) {
+  if (!submarket || !cityData) {
     return null;
   }
 
@@ -115,17 +115,17 @@ export default function SeminoleAirbnbCohost() {
         items={[
           { label: 'Home', to: '/' },
           { label: 'Locations' },
-          { label: 'Seminole' },
+          { label: submarket.city },
         ]}
       />
 
       {/* HERO */}
-      <section className="relative pt-16 md:pt-24 pb-12 md:pb-20 px-6 overflow-hidden">
+      <section className="relative pt-8 md:pt-12 pb-12 md:pb-20 px-6 overflow-hidden">
         <div className="absolute inset-0">
           <picture>
             <img
               src="/images/bsc-hero-interior.jpg"
-              alt="Bright, airy interior of a Tampa Bay area home"
+              alt={`Bright, airy interior of a ${submarket.city} area home`}
               className="w-full h-full object-cover opacity-20"
               loading="eager"
               fetchPriority="high"
@@ -138,19 +138,19 @@ export default function SeminoleAirbnbCohost() {
             <EyebrowBadge>{submarket.heroEyebrow}</EyebrowBadge>
           </div>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold leading-tight tracking-tight text-stone-900 mb-6">
-            Seminole short-term rental co-hosting that keeps you in charge.
+            {submarket.city} short-term rental co-hosting that keeps you in charge.
           </h1>
           <p className="text-xl text-stone-700 leading-relaxed mb-8">
-            Local boutique management for Seminole, FL property owners. You keep 70% of revenue,
+            Local boutique management for {submarket.city}, {submarket.state} property owners. You keep 70% of revenue,
             you keep the listing, and you keep every review you have already earned.
           </p>
           <div className="flex justify-center">
             <Link
               to="/owners/tampa-audit"
-              onClick={() => trackEvent('audit_cta_click', { source: `${SOURCE_TAG}-hero` })}
+              onClick={() => trackEvent('audit_cta_click', { source: `${sourceTag}-hero` })}
               className="inline-flex items-center justify-center bg-stone-900 text-white px-8 py-4 rounded-md font-medium hover:bg-stone-800 transition-colors min-h-[48px]"
             >
-              See My Seminole Property's Potential
+              See My {submarket.city} Property's Potential
             </Link>
           </div>
           <p className="text-stone-500 text-sm mt-4">
@@ -164,19 +164,18 @@ export default function SeminoleAirbnbCohost() {
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-10">
             <div className="mb-3">
-              <EyebrowBadge>Seminole Market Data</EyebrowBadge>
+              <EyebrowBadge>{submarket.city} Market Data</EyebrowBadge>
             </div>
             <h2 className="text-2xl md:text-3xl font-semibold text-stone-900 mb-3">
-              What the numbers actually say about Seminole.
+              What the numbers actually say about {submarket.city}.
             </h2>
             <p className="text-stone-600 text-base max-w-2xl mx-auto">
-              Source: AirDNA, trailing 12 months. Seminole has one of the highest market scores in
-              Pinellas County, but occupancy is down across the board.
+              Source: AirDNA, trailing 12 months. {submarket.neighborhoodNotes}
             </p>
           </div>
           <SubmarketStatGrid submarket={submarket} />
           <p className="text-stone-500 text-sm text-center mt-6">
-            Top-quartile Seminole properties earn approximately ${submarket.topQuartileRevenue.toLocaleString()} per year.
+            Top-quartile {submarket.city} properties earn approximately ${submarket.topQuartileRevenue.toLocaleString()} per year.
             Is yours?
           </p>
         </div>
@@ -185,11 +184,11 @@ export default function SeminoleAirbnbCohost() {
       {/* PROBLEM */}
       <ProblemSection
         eyebrow="The Setup"
-        headline="If you own a short-term rental in Seminole, you have probably noticed two things this year."
+        headline={`If you own a short-term rental in ${submarket.city}, you have probably noticed two things this year.`}
         body={
           <>
             <p>
-              First, occupancy has dropped. AirDNA shows Seminole rentals are down 8.1% year-over-year
+              First, occupancy has dropped. AirDNA shows {submarket.city} rentals are down {Math.abs(submarket.yoyOccupancy).toFixed(1)}% year-over-year
               on nights booked. Second, your average daily rate has actually held up. Owners with the
               right local pricing strategy are pulling ahead. Owners on auto-pilot are watching their
               calendars thin out.
@@ -206,7 +205,7 @@ export default function SeminoleAirbnbCohost() {
       {/* HIDDEN COST */}
       <ProblemSection
         eyebrow="The Hidden Cost"
-        headline="What a national manager is actually costing you in Seminole."
+        headline={`What a national manager is actually costing you in ${submarket.city}.`}
         body={
           <>
             <p>
@@ -217,7 +216,7 @@ export default function SeminoleAirbnbCohost() {
             <p>
               That is the part owners notice on their statements. The part they do not notice until
               they try to leave: the reviews stay with the manager, not with the property. Years of
-              five-star history, gone. Superhost status, gone. The Seminole rental that was earning
+              five-star history, gone. Superhost status, gone. The {submarket.city} rental that was earning
               ${submarket.annualRevenue.toLocaleString()} restarts from zero on a new listing.
             </p>
             <p>
@@ -233,9 +232,9 @@ export default function SeminoleAirbnbCohost() {
         <div className="max-w-3xl mx-auto">
           <AuditCtaBlock
             variant="inline"
-            sourceTag={`${SOURCE_TAG}-inline-1`}
-            headline="See what your Seminole property could actually earn."
-            subline="Free audit using your real listing data and Seminole submarket comps. No phone calls unless you want one."
+            sourceTag={`${sourceTag}-inline-1`}
+            headline={`See what your ${submarket.city} property could actually earn.`}
+            subline={`Free audit using your real listing data and ${submarket.city} submarket comps. No phone calls unless you want one.`}
           />
         </div>
       </div>
@@ -243,11 +242,11 @@ export default function SeminoleAirbnbCohost() {
       {/* OFFER */}
       <OfferSection
         eyebrow="The Offer"
-        headline="Local boutique co-hosting for Seminole owners."
+        headline={`Local boutique co-hosting for ${submarket.city} owners.`}
         intro={
           <p>
             We are a small Tampa Bay team focused on the properties we can actually serve well.
-            Your Seminole rental stays under your Airbnb account. Your reviews stay with you.
+            Your {submarket.city} rental stays under your Airbnb account. Your reviews stay with you.
             Our share is 30% of revenue. No upfront fees, no contracts, no minimum stay.
           </p>
         }
@@ -270,46 +269,30 @@ export default function SeminoleAirbnbCohost() {
         ]}
       />
 
-      {/* SUBMARKET-SPECIFIC OPPORTUNITY */}
+      {/* CITY-SPECIFIC OPPORTUNITY */}
       <section className="py-16 md:py-24 px-6 bg-white">
         <div className="max-w-3xl mx-auto">
           <div className="mb-4">
-            <EyebrowBadge>Why Seminole, Specifically</EyebrowBadge>
+            <EyebrowBadge>Why {submarket.city}, Specifically</EyebrowBadge>
           </div>
           <h2 className="text-3xl md:text-4xl font-semibold text-stone-900 leading-tight mb-6">
-            Seminole sits in a specific spot in the Pinellas market.
+            {submarket.city} sits in a specific spot in the Pinellas market.
           </h2>
           <div className="prose prose-lg prose-stone max-w-none text-stone-700 space-y-5">
-            <p>
-              Seminole is inland enough to avoid the supply glut that has hit Clearwater Beach and
-              St. Pete Beach, but close enough to Madeira Beach and the gulf that guests pay a
-              premium for the convenience. The local medical corridor and Seminole City Park drive
-              steady mid-week demand that most beach submarkets cannot match.
-            </p>
-            <p>
-              The result: an AirDNA Market Score of 77, among the highest in Pinellas County,
-              with an average daily rate of ${submarket.adr}. That is what Seminole properties
-              should be earning. What most owners actually take home is well below that, because
-              national managers price for volume and not for local demand.
-            </p>
-            <p>
-              Top-quartile Seminole properties, meaning the top 25% of performers, earn
-              approximately ${submarket.topQuartileRevenue.toLocaleString()} per year. The
-              difference between top-quartile and median is roughly $33,000. Most of it comes
-              from three things: dynamic pricing, faster guest response, and listing improvements
-              tuned to Seminole specifically rather than to Pinellas County in general.
-            </p>
+            {cityData.whyHereParagraphs.map((p, i) => (
+              <p key={i}>{p}</p>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* PROOF - placeholder testimonial */}
+      {/* PROOF */}
       <section className="py-12 px-6 bg-stone-50">
         <div className="max-w-3xl mx-auto">
           <div className="mb-4">
-            <EyebrowBadge>What Seminole Owners Are Reporting</EyebrowBadge>
+            <EyebrowBadge>What {submarket.city} Owners Are Reporting</EyebrowBadge>
           </div>
-          <PlaceholderTestimonial city="Seminole" fromManager="a national manager" />
+          <PlaceholderTestimonial city={submarket.city} fromManager="a national manager" />
         </div>
       </section>
 
@@ -320,9 +303,9 @@ export default function SeminoleAirbnbCohost() {
             <EyebrowBadge>Common Questions</EyebrowBadge>
           </div>
           <h2 className="text-3xl md:text-4xl font-semibold text-stone-900 leading-tight mb-8">
-            Questions Seminole owners ask before switching.
+            Questions {submarket.city} owners ask before switching.
           </h2>
-          <FaqAccordion items={SEMINOLE_FAQS} />
+          <FaqAccordion items={allFaqs} />
         </div>
       </section>
 
@@ -331,14 +314,14 @@ export default function SeminoleAirbnbCohost() {
         <div className="max-w-3xl mx-auto">
           <InternalLinkCluster
             heading="Compare your options"
-            sourceTag={`${SOURCE_TAG}-internal`}
+            sourceTag={`${sourceTag}-internal`}
             links={[
               { to: '/compare/vacasa-vs-between-stays', label: 'Vacasa vs Between Stays Collective' },
               { to: '/compare/evolve-vs-between-stays', label: 'Evolve vs Between Stays Collective' },
               { to: '/compare/casago-vs-between-stays', label: 'Casago vs Between Stays Collective' },
               { to: '/reviews/vacasa-tampa-bay-honest-review', label: 'Vacasa Tampa Bay: An Honest Owner-Side Review' },
               { to: '/reviews/what-to-know-before-leaving-vacasa', label: 'Before You Leave Vacasa: A Checklist' },
-              { to: '/locations/largo-airbnb-cohost', label: 'Nearby: Largo Co-Hosting' },
+              { to: `/locations/${nearbySlug}-airbnb-cohost`, label: `Nearby: ${getSubmarketBySlug(nearbySlug)?.city || ''} Co-Hosting` },
             ]}
           />
         </div>
@@ -349,9 +332,9 @@ export default function SeminoleAirbnbCohost() {
         <div className="max-w-5xl mx-auto">
           <AuditCtaBlock
             variant="section"
-            sourceTag={`${SOURCE_TAG}-final`}
-            headline="See what your Seminole property could actually earn."
-            subline="Free audit. Real Seminole submarket data. No commitment, no phone calls, no pressure."
+            sourceTag={`${sourceTag}-final`}
+            headline={`See what your ${submarket.city} property could actually earn.`}
+            subline={`Free audit. Real ${submarket.city} submarket data. No commitment, no phone calls, no pressure.`}
           />
         </div>
       </div>
@@ -361,7 +344,7 @@ export default function SeminoleAirbnbCohost() {
         <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 text-sm">
           <div>
             <p className="text-stone-100 font-semibold mb-2">Between Stays Collective</p>
-            <p>Tampa Bay co-hosting for short-term rental owners. Local team, boutique attention, no long-term contracts.</p>
+            <p>Tampa Bay co-hosting for short-term rental owners. Local team, boutique attention, no contracts.</p>
           </div>
           <div>
             <p className="text-stone-100 font-semibold mb-2">Have questions?</p>

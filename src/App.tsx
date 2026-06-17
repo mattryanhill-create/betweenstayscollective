@@ -20,6 +20,12 @@ import TampaAudit from './pages/owners/TampaAudit';
 import TampaAuditThanks from './pages/owners/TampaAuditThanks';
 import LocationStubResolver from './pages/locations/LocationStubResolver';
 import SeminoleAirbnbCohost from './pages/locations/SeminoleAirbnbCohost';
+import LargoAirbnbCohost from './pages/locations/LargoAirbnbCohost';
+import DunedinAirbnbCohost from './pages/locations/DunedinAirbnbCohost';
+import PinellasParkAirbnbCohost from './pages/locations/PinellasParkAirbnbCohost';
+import ClearwaterAirbnbCohost from './pages/locations/ClearwaterAirbnbCohost';
+import StPetersburgAirbnbCohost from './pages/locations/StPetersburgAirbnbCohost';
+import PalmHarborAirbnbCohost from './pages/locations/PalmHarborAirbnbCohost';
 import CompareStub from './pages/compare/CompareStub';
 import ReviewStub from './pages/reviews/ReviewStub';
 import { ExitIntentModal } from './components/programmatic/ExitIntentModal';
@@ -75,6 +81,12 @@ function AppLayout() {
             <Route path="/owners/tampa-audit" element={<TampaAudit />} />
             <Route path="/owners/tampa-audit/thanks" element={<TampaAuditThanks />} />
             <Route path="/locations/seminole-airbnb-cohost" element={<SeminoleAirbnbCohost />} />
+            <Route path="/locations/largo-airbnb-cohost" element={<LargoAirbnbCohost />} />
+            <Route path="/locations/dunedin-airbnb-cohost" element={<DunedinAirbnbCohost />} />
+            <Route path="/locations/pinellas-park-airbnb-cohost" element={<PinellasParkAirbnbCohost />} />
+            <Route path="/locations/clearwater-airbnb-cohost" element={<ClearwaterAirbnbCohost />} />
+            <Route path="/locations/st-petersburg-airbnb-cohost" element={<StPetersburgAirbnbCohost />} />
+            <Route path="/locations/palm-harbor-airbnb-cohost" element={<PalmHarborAirbnbCohost />} />
             <Route path="/locations/:slug" element={<LocationStubResolver />} />
             <Route path="/compare/:slug" element={<CompareStub />} />
             <Route path="/reviews/:slug" element={<ReviewStub />} />
