@@ -19,6 +19,7 @@ import CasagoAlternative from './pages/CasagoAlternative';
 import TampaAudit from './pages/owners/TampaAudit';
 import TampaAuditThanks from './pages/owners/TampaAuditThanks';
 import LocationStubResolver from './pages/locations/LocationStubResolver';
+import SeminoleAirbnbCohost from './pages/locations/SeminoleAirbnbCohost';
 import CompareStub from './pages/compare/CompareStub';
 import ReviewStub from './pages/reviews/ReviewStub';
 import { ExitIntentModal } from './components/programmatic/ExitIntentModal';
@@ -73,6 +74,7 @@ function AppLayout() {
             <Route path="/blog/casago-alternative-in-tampa-bay" element={<CasagoAlternative />} />
             <Route path="/owners/tampa-audit" element={<TampaAudit />} />
             <Route path="/owners/tampa-audit/thanks" element={<TampaAuditThanks />} />
+            <Route path="/locations/seminole-airbnb-cohost" element={<SeminoleAirbnbCohost />} />
             <Route path="/locations/:slug" element={<LocationStubResolver />} />
             <Route path="/compare/:slug" element={<CompareStub />} />
             <Route path="/reviews/:slug" element={<ReviewStub />} />
