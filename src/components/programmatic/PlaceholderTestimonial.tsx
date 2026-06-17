@@ -18,7 +18,7 @@ export function PlaceholderTestimonial({ city, fromManager }: Props) {
         Results are based on aggregated Pinellas County data and AirDNA submarket medians.
       </p>
       <p className="text-stone-500 text-sm mt-3">
-        Anonymized aggregate framing — placeholder until verified owner quotes are gathered.
+        Anonymized aggregate framing. Placeholder until verified owner quotes are gathered.
       </p>
     </div>
   );

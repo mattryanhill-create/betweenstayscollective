@@ -239,7 +239,7 @@ export default function SeminoleAirbnbCohost() {
           <p>
             We are a small Tampa Bay team focused on the properties we can actually serve well.
             Your Seminole rental stays under your Airbnb account. Your reviews stay with you.
-            Our share is 30% of revenue. No upfront fees, no long-term contract, no minimum stay.
+            Our share is 30% of revenue. No upfront fees, no contracts, no minimum stay.
           </p>
         }
         pillars={[
