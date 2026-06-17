@@ -65,7 +65,7 @@ export const submarkets: Submarket[] = [
     yoyAdr: 0.8,
     yoyRevenue: -5.3,
     activeListings: 298,
-    neighborhoodNotes: 'Walkable downtown, Scottish heritage, Honeymoon Island gateway — strong repeat-guest market.',
+    neighborhoodNotes: 'Walkable downtown, Scottish heritage, Honeymoon Island gateway. Strong repeat-guest market.',
     heroEyebrow: 'Dunedin, FL Co-Hosting',
   },
   {
@@ -82,7 +82,7 @@ export const submarkets: Submarket[] = [
     yoyAdr: 5.4,
     yoyRevenue: -5.7,
     activeListings: 191,
-    neighborhoodNotes: 'Central Pinellas, mid-county access — smaller market with less competition.',
+    neighborhoodNotes: 'Central Pinellas, mid-county access. Smaller market with less competition.',
     heroEyebrow: 'Pinellas Park, FL Co-Hosting',
   },
   {
@@ -99,7 +99,7 @@ export const submarkets: Submarket[] = [
     yoyAdr: 1.2,
     yoyRevenue: -6.7,
     activeListings: 1212,
-    neighborhoodNotes: 'Inland Clearwater (not Clearwater Beach) — residential properties serving beach-bound travelers.',
+    neighborhoodNotes: 'Inland Clearwater (not Clearwater Beach), residential properties serving beach-bound travelers.',
     heroEyebrow: 'Clearwater, FL Co-Hosting',
   },
   {
