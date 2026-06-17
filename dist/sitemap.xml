@@ -66,4 +66,27 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  <!-- Geo landing pages -->
+  <url><loc>https://www.betweenstaysco.com/locations/seminole-airbnb-cohost</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.betweenstaysco.com/locations/largo-airbnb-cohost</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.betweenstaysco.com/locations/dunedin-airbnb-cohost</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.betweenstaysco.com/locations/pinellas-park-airbnb-cohost</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.betweenstaysco.com/locations/clearwater-airbnb-cohost</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.betweenstaysco.com/locations/st-petersburg-airbnb-cohost</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.betweenstaysco.com/locations/palm-harbor-airbnb-cohost</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <!-- Comparison pages -->
+  <url><loc>https://www.betweenstaysco.com/compare/vacasa-vs-between-stays</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.betweenstaysco.com/compare/evolve-vs-between-stays</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.betweenstaysco.com/compare/casago-vs-between-stays</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.betweenstaysco.com/compare/vacasa-vs-evolve-tampa</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.betweenstaysco.com/compare/national-manager-vs-local-cohost</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.betweenstaysco.com/compare/self-managing-vs-cohost</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.betweenstaysco.com/compare/property-manager-vs-airbnb-cohost</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.betweenstaysco.com/compare/full-service-vs-cohost-model</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <!-- Review pages -->
+  <url><loc>https://www.betweenstaysco.com/reviews/vacasa-tampa-bay-honest-review</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.betweenstaysco.com/reviews/evolve-tampa-bay-honest-review</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.betweenstaysco.com/reviews/casago-tampa-bay-honest-review</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.betweenstaysco.com/reviews/airbnb-property-manager-tampa-roundup</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.betweenstaysco.com/reviews/what-to-know-before-leaving-vacasa</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
 </urlset>
