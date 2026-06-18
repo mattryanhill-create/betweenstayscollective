@@ -179,8 +179,8 @@ export default function ComparisonLandingTemplate({ slug, pagePath }: Props) {
         intro={
           <p>
             We are a small Tampa Bay team focused on the properties we can serve well. Your short-term
-            rental stays under your Airbnb account. Your reviews stay with you. Our share is 30% of revenue.
-            No upfront fees, no contracts, no minimum stay.
+            rental stays under your Airbnb account. You keep 70% of revenue and the listing itself, with
+            us added as a co-host. No upfront fees, no contracts, no minimum stay.
           </p>
         }
         pillars={[
