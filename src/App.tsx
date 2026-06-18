@@ -27,6 +27,14 @@ import ClearwaterAirbnbCohost from './pages/locations/ClearwaterAirbnbCohost';
 import StPetersburgAirbnbCohost from './pages/locations/StPetersburgAirbnbCohost';
 import PalmHarborAirbnbCohost from './pages/locations/PalmHarborAirbnbCohost';
 import CompareStub from './pages/compare/CompareStub';
+import VacasaVsBetweenStays from './pages/compare/VacasaVsBetweenStays';
+import EvolveVsBetweenStays from './pages/compare/EvolveVsBetweenStays';
+import CasagoVsBetweenStays from './pages/compare/CasagoVsBetweenStays';
+import VacasaVsEvolveTampa from './pages/compare/VacasaVsEvolveTampa';
+import NationalManagerVsLocalCohost from './pages/compare/NationalManagerVsLocalCohost';
+import SelfManagingVsCohost from './pages/compare/SelfManagingVsCohost';
+import PropertyManagerVsAirbnbCohost from './pages/compare/PropertyManagerVsAirbnbCohost';
+import FullServiceVsCohostModel from './pages/compare/FullServiceVsCohostModel';
 import ReviewStub from './pages/reviews/ReviewStub';
 import { ExitIntentModal } from './components/programmatic/ExitIntentModal';
 
@@ -88,6 +96,14 @@ function AppLayout() {
             <Route path="/locations/st-petersburg-airbnb-cohost" element={<StPetersburgAirbnbCohost />} />
             <Route path="/locations/palm-harbor-airbnb-cohost" element={<PalmHarborAirbnbCohost />} />
             <Route path="/locations/:slug" element={<LocationStubResolver />} />
+            <Route path="/compare/vacasa-vs-between-stays" element={<VacasaVsBetweenStays />} />
+            <Route path="/compare/evolve-vs-between-stays" element={<EvolveVsBetweenStays />} />
+            <Route path="/compare/casago-vs-between-stays" element={<CasagoVsBetweenStays />} />
+            <Route path="/compare/vacasa-vs-evolve-tampa" element={<VacasaVsEvolveTampa />} />
+            <Route path="/compare/national-manager-vs-local-cohost" element={<NationalManagerVsLocalCohost />} />
+            <Route path="/compare/self-managing-vs-cohost" element={<SelfManagingVsCohost />} />
+            <Route path="/compare/property-manager-vs-airbnb-cohost" element={<PropertyManagerVsAirbnbCohost />} />
+            <Route path="/compare/full-service-vs-cohost-model" element={<FullServiceVsCohostModel />} />
             <Route path="/compare/:slug" element={<CompareStub />} />
             <Route path="/reviews/:slug" element={<ReviewStub />} />
           </Routes>
