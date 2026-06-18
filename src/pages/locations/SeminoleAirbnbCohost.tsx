@@ -185,19 +185,16 @@ export default function SeminoleAirbnbCohost() {
       {/* PROBLEM */}
       <ProblemSection
         eyebrow="The Setup"
-        headline="If you own a short-term rental in Seminole, you have probably noticed two things this year."
+        headline="If you own a short-term rental in Seminole, the market has shifted under you."
         body={
           <>
             <p>
-              First, occupancy has dropped. AirDNA shows Seminole rentals are down 8.1% year-over-year
-              on nights booked. Second, your average daily rate has actually held up. Owners with the
-              right local pricing strategy are pulling ahead. Owners on auto-pilot are watching their
-              calendars thin out.
+              Seminole sits in a sweet spot in the Pinellas market: inland enough to avoid the worst of the supply glut hitting Clearwater Beach and St. Pete Beach, close enough to Madeira Beach that guests still pay a premium for the convenience. The owners holding ground here are the ones treating Seminole as a year-round market driven by the medical corridor and local events, not just a beach-overflow market.
             </p>
             <p>
-              The gap between the two groups is widening. And the owners feeling it most are the ones
-              who handed their property to a national manager and assumed the brand name would do
-              the work.
+              The shared backdrop: AirDNA shows Seminole rentals are down 8.1% year-over-year on nights booked,
+              while average daily rate has held up. Owners with the right local pricing strategy are pulling ahead.
+              Owners on auto-pilot are watching their calendars thin out, and the gap between the two groups is widening.
             </p>
           </>
         }
@@ -210,6 +207,9 @@ export default function SeminoleAirbnbCohost() {
         body={
           <>
             <p>
+              In a submarket with a 77 AirDNA score and meaningful mid-week medical-corridor demand, being treated as generic Pinellas inventory is the fastest way to underprice your property. National managers price Seminole using county-wide averages. Local pricing for the specific mid-week demand pattern here routinely captures 15 to 25% more revenue per available night.
+            </p>
+            <p>
               The headline fee is 25%, sometimes 30%. The real number, once you add cleaning markups,
               guest service fees, linen programs, and the listing being held under their account
               instead of yours, is usually closer to 35 to 40% of what guests pay.
@@ -219,10 +219,6 @@ export default function SeminoleAirbnbCohost() {
               they try to leave: the reviews stay with the manager, not with the property. Years of
               five-star history, gone. Superhost status, gone. The Seminole rental that was earning
               ${submarket.annualRevenue.toLocaleString()} restarts from zero on a new listing.
-            </p>
-            <p>
-              Owners who plan ahead avoid this. Owners who do not, lose 6 to 12 months of momentum
-              in a market where occupancy is already softening.
             </p>
           </>
         }
@@ -303,6 +299,18 @@ export default function SeminoleAirbnbCohost() {
         </div>
       </section>
 
+            {/* INLINE CTA after Why Seminole: captures readers at peak interest */}
+      <div className="px-6 pt-2">
+        <div className="max-w-3xl mx-auto">
+          <AuditCtaBlock
+            variant="inline"
+            sourceTag={`${SOURCE_TAG}-inline-2`}
+            headline="Curious what your Seminole property could earn with local pricing?"
+            subline="Free audit using your real listing data. We respond by email within 1 business day."
+          />
+        </div>
+      </div>
+
       {/* PROOF - placeholder testimonial */}
       <section className="py-12 px-6 bg-stone-50">
         <div className="max-w-3xl mx-auto">
@@ -330,7 +338,7 @@ export default function SeminoleAirbnbCohost() {
       <section className="px-6 bg-white">
         <div className="max-w-3xl mx-auto">
           <InternalLinkCluster
-            heading="Compare your options"
+            heading="Compare your options for Seminole co-hosting"
             sourceTag={`${SOURCE_TAG}-internal`}
             links={[
               { to: '/compare/vacasa-vs-between-stays', label: 'Vacasa vs Between Stays Collective' },

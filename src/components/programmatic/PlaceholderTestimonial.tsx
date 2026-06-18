@@ -4,9 +4,8 @@ interface Props {
 }
 
 /**
- * Renders an anonymized aggregate testimonial frame.
- * Never uses quote marks or invented names — placeholder until real testimonials are gathered.
- * Mark replacement points with the comment below in JSX.
+ * Renders an anonymized aggregate observation about owner-side outcomes.
+ * Never uses quote marks or invented names. Replace with verified testimonials when available.
  */
 export function PlaceholderTestimonial({ city, fromManager }: Props) {
   return (
@@ -15,10 +14,8 @@ export function PlaceholderTestimonial({ city, fromManager }: Props) {
       <p className="text-stone-800 text-base leading-relaxed">
         Owners in {city} who have switched from {fromManager} to a local boutique co-host typically
         report cleaner accounting, faster guest response times, and improved Superhost continuity.
-        Results are based on aggregated Pinellas County data and AirDNA submarket medians.
-      </p>
-      <p className="text-stone-500 text-sm mt-3">
-        Anonymized aggregate framing. Placeholder until verified owner quotes are gathered.
+        Outcomes vary by property type and condition. Figures referenced on this page reflect
+        aggregated Pinellas County data and AirDNA submarket medians.
       </p>
     </div>
   );

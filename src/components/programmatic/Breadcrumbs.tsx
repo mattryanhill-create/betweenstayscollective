@@ -11,7 +11,10 @@ interface Props {
 
 export function Breadcrumbs({ items }: Props) {
   return (
-    <nav aria-label="Breadcrumb" className="max-w-5xl mx-auto px-6 pt-6">
+    <nav
+      aria-label="Breadcrumb"
+      className="max-w-5xl mx-auto px-6 pt-24 md:pt-28 pb-2"
+    >
       <ol className="flex flex-wrap items-center gap-2 text-sm text-stone-500">
         {items.map((item, idx) => {
           const isLast = idx === items.length - 1;

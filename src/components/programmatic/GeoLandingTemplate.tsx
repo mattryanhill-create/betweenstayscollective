@@ -184,19 +184,14 @@ export default function GeoLandingTemplate({ slug, pagePath }: Props) {
       {/* PROBLEM */}
       <ProblemSection
         eyebrow="The Setup"
-        headline={`If you own a short-term rental in ${submarket.city}, you have probably noticed two things this year.`}
+        headline={`If you own a short-term rental in ${submarket.city}, the market has shifted under you.`}
         body={
           <>
+            <p>{cityData.setupOpening}</p>
             <p>
-              First, occupancy has dropped. AirDNA shows {submarket.city} rentals are down {Math.abs(submarket.yoyOccupancy).toFixed(1)}% year-over-year
-              on nights booked. Second, your average daily rate has actually held up. Owners with the
-              right local pricing strategy are pulling ahead. Owners on auto-pilot are watching their
-              calendars thin out.
-            </p>
-            <p>
-              The gap between the two groups is widening. And the owners feeling it most are the ones
-              who handed their property to a national manager and assumed the brand name would do
-              the work.
+              The shared backdrop: AirDNA shows {submarket.city} rentals are down {Math.abs(submarket.yoyOccupancy).toFixed(1)}% year-over-year
+              on nights booked, while average daily rate has held up. Owners with the right local pricing strategy are pulling ahead.
+              Owners on auto-pilot are watching their calendars thin out, and the gap between the two groups is widening.
             </p>
           </>
         }
@@ -208,6 +203,7 @@ export default function GeoLandingTemplate({ slug, pagePath }: Props) {
         headline={`What a national manager is actually costing you in ${submarket.city}.`}
         body={
           <>
+            <p>{cityData.hiddenCostAngle}</p>
             <p>
               The headline fee is 25%, sometimes 30%. The real number, once you add cleaning markups,
               guest service fees, linen programs, and the listing being held under their account
@@ -218,10 +214,6 @@ export default function GeoLandingTemplate({ slug, pagePath }: Props) {
               they try to leave: the reviews stay with the manager, not with the property. Years of
               five-star history, gone. Superhost status, gone. The {submarket.city} rental that was earning
               ${submarket.annualRevenue.toLocaleString()} restarts from zero on a new listing.
-            </p>
-            <p>
-              Owners who plan ahead avoid this. Owners who do not, lose 6 to 12 months of momentum
-              in a market where occupancy is already softening.
             </p>
           </>
         }
@@ -286,6 +278,18 @@ export default function GeoLandingTemplate({ slug, pagePath }: Props) {
         </div>
       </section>
 
+      {/* INLINE CTA after Why-City section: captures readers at peak interest */}
+      <div className="px-6 pt-2">
+        <div className="max-w-3xl mx-auto">
+          <AuditCtaBlock
+            variant="inline"
+            sourceTag={`${sourceTag}-inline-2`}
+            headline={`Curious what your ${submarket.city} property could earn with local pricing?`}
+            subline="Free audit using your real listing data. We respond by email within 1 business day."
+          />
+        </div>
+      </div>
+
       {/* PROOF */}
       <section className="py-12 px-6 bg-stone-50">
         <div className="max-w-3xl mx-auto">
@@ -313,7 +317,7 @@ export default function GeoLandingTemplate({ slug, pagePath }: Props) {
       <section className="px-6 bg-white">
         <div className="max-w-3xl mx-auto">
           <InternalLinkCluster
-            heading="Compare your options"
+            heading={`Compare your options for ${submarket.city} co-hosting`}
             sourceTag={`${sourceTag}-internal`}
             links={[
               { to: '/compare/vacasa-vs-between-stays', label: 'Vacasa vs Between Stays Collective' },
